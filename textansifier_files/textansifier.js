@@ -1,5 +1,5 @@
 // Text ANSIfier modified from the original Text Colorizer by David at stuffbydavid.com, 2011
-// I don't take much credit for this other than changing the output from BBCode to pennMUSH-friendly ANSI code.
+// I don't take much credit for this other than changing the output from ansicode to pennMUSH-friendly ANSI code.
 
 function cutHex(h) {return (h.charAt(0)=="#") ? h.substring(1,7):h}
 function hexToR(h) {return parseInt((cutHex(h)).substring(0,2),16)}
@@ -77,15 +77,15 @@ function textcolorizer_handle() {
 
     if (input_text!=document.getElementById("input_text").value) {update=1;}
     input_text=document.getElementById("input_text").value;
-
+	
     if (input_colorword!=document.getElementById("input_colorword").checked) {update=1;}
     input_colorword=document.getElementById("input_colorword").checked;
-
+	
     if (update==1) {
         update=0;
         str_html="";
-        str_bbcode="";
-        var str_bbcodeend="";
+        str_ansicode="";
+        var str_ansicodeend="";
         str_style="";
         if (str_style!="") str_html+="<span style='"+str_style+"'>";
         var a,r,g,b,rinc,ginc,binc,ccol;
@@ -100,10 +100,10 @@ function textcolorizer_handle() {
                 ccol=rgbToHex(r,g,b);
                 if (input_text.charAt(a)==" ") {
                     str_html+=" ";
-                    str_bbcode+=" ";
+                    str_ansicode+=" ";
                 } else {
                     str_html+="<span style='color:#"+ccol+";'>"+input_text.charAt(a)+"</span>";
-                    str_bbcode+='[ansi(#'+ccol+','+input_text.charAt(a)+")]";
+                    str_ansicode+='[ansi(#'+ccol+','+input_text.charAt(a).replace(/,/g, '%,')+")]";
                 }
                 r+=rinc;
                 g+=ginc;
@@ -120,10 +120,10 @@ function textcolorizer_handle() {
                 ccol=rgbToHex(r,g,b);
                 if (input_text.charAt(a)==" ") {
                     str_html+=" ";
-                    str_bbcode+=" ";
+                    str_ansicode+=" ";
                 } else {
                     str_html+="<span style='color:#"+ccol+";'>"+input_text.charAt(a)+"</span>";
-                    str_bbcode+='[ansi(#'+ccol+','+input_text.charAt(a)+")]";
+                    str_ansicode+='[ansi(#'+ccol+','+input_text.charAt(a).replace(/,/g, '%,')+")]";
                 }
                 if (a<Math.floor(input_text.length/2)) {
                     r+=rinc;
@@ -153,10 +153,10 @@ function textcolorizer_handle() {
                 ccol=rgbToHex(r,g,b);
                 if (input_text.charAt(a)==" ") {
                     str_html+=" ";
-                    str_bbcode+=" ";
+                    str_ansicode+=" ";
                 } else {
                     str_html+="<span style='color:#"+ccol+";'>"+input_text.charAt(a)+"</span>";
-                    str_bbcode+='[ansi(#'+ccol+','+input_text.charAt(a)+")]";
+                    str_ansicode+='[ansi(#'+ccol+','+input_text.charAt(a).replace(/,/g, '%,')+")]";
                 }
                 if (a<Math.floor(input_text.length/2)) {
                     r+=rinc;
@@ -170,7 +170,7 @@ function textcolorizer_handle() {
             }
         } else if (input_effect=="4") {
             str_html+="<span style='color:"+input_color8+";'>"+input_text+"</span>"
-            str_bbcode+='[ansi(#'+input_color8+','+input_text+")]";
+            str_ansicode+='[ansi(#'+input_color8+','+input_text+")]";
         } else if (input_effect=="5") {
             var i=0;
             for (a=0; a<input_text.length; a++) {
@@ -179,26 +179,26 @@ function textcolorizer_handle() {
                 if (input_colorword==1 && input_text.charAt(a)==" ") i++;
                 if (a>=random_length) {
                     str_html+=input_text.charAt(a)
-                    str_bbcode+=input_text.charAt(a)
+                    str_ansicode+=input_text.charAt(a)
                 } else {
                     if (input_colorword==0) {
                         if (input_text.charAt(a)==" ") {
                             str_html+=" ";
-                            str_bbcode+=" ";
+                            str_ansicode+=" ";
                         } else {
                             str_html+="<span style='color:#"+ccol+";'>"+input_text.charAt(a)+"</span>";
-                            str_bbcode+='[ansi(#'+ccol+','+input_text.charAt(a)+")]";
+                            str_ansicode+='[ansi(#'+ccol+','+input_text.charAt(a).replace(/,/g, '%,')+")]";
                         }
                     } else {
                         if (a==0 || input_text.charAt(a-1)==" ") {
                             str_html+="<span style='color:#"+ccol+";'>"+input_text.charAt(a);
-                            str_bbcode+='[ansi(#'+ccol+','+input_text.charAt(a);
+                            str_ansicode+='[ansi(#'+ccol+','+input_text.charAt(a);
                         } else if (a==input_text.length-1 || input_text.charAt(a)==" ") {
                             str_html+=input_text.charAt(a)+"</span>";
-                            str_bbcode+=input_text.charAt(a)+')]';
+                            str_ansicode+=input_text.charAt(a)+')]';
                         } else {
                             str_html+=input_text.charAt(a);
-                            str_bbcode+=input_text.charAt(a);
+                            str_ansicode+=input_text.charAt(a);
                         }
                     }
                 }
@@ -217,16 +217,16 @@ function textcolorizer_handle() {
                 if (i>=s*5) ccol=rgbToHex(255,0,255*(1-p));
                 if (input_text.charAt(a)==" ") {
                     str_html+=" ";
-                    str_bbcode+=" ";
+                    str_ansicode+=" ";
                 } else {
                     str_html+="<span style='color:#"+ccol+";'>"+input_text.charAt(a)+"</span>";
-                    str_bbcode+='[ansi(#'+ccol+','+input_text.charAt(a)+")]";
+                    str_ansicode+='[ansi(#'+ccol+','+input_text.charAt(a).replace(/,/g, '%,')+")]";
                 }
             }
         }
         if (str_style!="") {str_html+="</span>"}
         document.getElementById("div_preview").innerHTML="<span style='font-size:16px;font-family: FixedSys;background-color:black'>"+str_html+"</span>";
-        document.getElementById("output_bbcode").value=str_bbcode+str_bbcodeend;
+        document.getElementById("output_ansicode").value=str_ansicode+str_ansicodeend;
         document.getElementById("output_html").value=str_html;
     }
     setTimeout(textcolorizer_handle,50)
