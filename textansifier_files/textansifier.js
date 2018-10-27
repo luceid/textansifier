@@ -23,10 +23,7 @@ input_color6=""
 input_color7=""
 input_color8=""
 input_text=""
-input_font=""
-input_size=""
-input_bold=0
-input_italic=0
+input_centred=0
 input_colorword=0
 random_length=0;
 update=0
@@ -81,18 +78,6 @@ function textcolorizer_handle() {
     if (input_text!=document.getElementById("input_text").value) {update=1;}
     input_text=document.getElementById("input_text").value;
 
-    if (input_font!=document.getElementById("input_font").value) {update=1;}
-    input_font=document.getElementById("input_font").value;
-
-    if (input_size!=document.getElementById("input_size").value) {update=1;}
-    input_size=document.getElementById("input_size").value;
-
-    if (input_bold!=document.getElementById("input_bold").checked) {update=1;}
-    input_bold=document.getElementById("input_bold").checked;
-
-    if (input_italic!=document.getElementById("input_italic").checked) {update=1;}
-    input_italic=document.getElementById("input_italic").checked;
-
     if (input_colorword!=document.getElementById("input_colorword").checked) {update=1;}
     input_colorword=document.getElementById("input_colorword").checked;
 
@@ -102,23 +87,6 @@ function textcolorizer_handle() {
         str_bbcode="";
         var str_bbcodeend="";
         str_style="";
-        if (input_bold==1) {str_style+="font-weight:bold;"; str_bbcode+="[b]"; str_bbcodeend="[/b]"+str_bbcodeend;}
-        if (input_italic==1) {str_style+="font-style:italic;"; str_bbcode+="[i]"; str_bbcodeend="[/i]"+str_bbcodeend;}
-        if (input_font!="") {str_style+='font-family:"'+input_font+'";'; str_bbcode+='[font="'+input_font+'"]'; str_bbcodeend="[/font]"+str_bbcodeend;}
-        if (input_size!="0") {
-            var str_size;
-            str_size=""
-            if (input_size=="1") str_size="10px"
-            if (input_size=="2") str_size="12px"
-            if (input_size=="3") str_size="15px"
-            if (input_size=="4") str_size="17px"
-            if (input_size=="5") str_size="22px"
-            if (input_size=="6") str_size="27px"
-            if (input_size=="7") str_size="35px"
-            str_style+='font-size:'+str_size+';';
-            str_bbcode+='[size="'+input_size+'"]';
-            str_bbcodeend="[/size]"+str_bbcodeend;
-        }
         if (str_style!="") str_html+="<span style='"+str_style+"'>";
         var a,r,g,b,rinc,ginc,binc,ccol;
         if (input_effect=="1") {
