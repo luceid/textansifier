@@ -257,7 +257,7 @@ function textcolorizer_handle() {
             }
         }
         if (str_style!="") {str_html+="</span>"}
-        document.getElementById("div_preview").innerHTML="<span style='font-size:12px;background-color:black'>"+str_html+"</span>";
+        document.getElementById("div_preview").innerHTML="<span style='font-size:18px;font-family: FixedSys;background-color:black'>"+str_html+"</span>";
         document.getElementById("output_bbcode").value=str_bbcode+str_bbcodeend;
         document.getElementById("output_html").value=str_html;
     }
