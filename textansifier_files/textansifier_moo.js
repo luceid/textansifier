@@ -93,9 +93,9 @@ function textcolorizer_handle() {
             r=hexToR(input_color1)
             g=hexToG(input_color1)
             b=hexToB(input_color1)
-            rinc=(hexToR(input_color2)-r)/input_text.length
-            ginc=(hexToG(input_color2)-g)/input_text.length
-            binc=(hexToB(input_color2)-b)/input_text.length
+            rinc=(hexToR(input_color2)-r)/((input_text.length)-1)
+            ginc=(hexToG(input_color2)-g)/((input_text.length)-1)
+            binc=(hexToB(input_color2)-b)/((input_text.length)-1)
             for (a=0; a<input_text.length; a++) {
                 ccol=rgbToHex(r,g,b);
                 if (input_text.charAt(a)==" ") {
@@ -103,7 +103,7 @@ function textcolorizer_handle() {
                     str_ansicode+=" ";
                 } else {
                     str_html+="<span style='color:#"+ccol+";'>"+input_text.charAt(a)+"</span>";
-                    str_ansicode+='['+Math.floor(r)+':'+Math.floor(g)+':'+Math.floor(b)+']'+input_text.charAt(a).replace(/,/g, '%,');
+                    str_ansicode+='['+Math.floor(Math.min(Math.max(r,0),255))+':'+Math.floor(Math.min(Math.max(g,0),255))+':'+Math.floor(Math.min(Math.max(b,0),255))+']'+input_text.charAt(a).replace(/,/g, '%,');
                 }
                 r+=rinc;
                 g+=ginc;
