@@ -93,9 +93,9 @@ function textcolorizer_handle() {
             r=hexToR(input_color1)
             g=hexToG(input_color1)
             b=hexToB(input_color1)
-            rinc=(hexToR(input_color2)-r)/input_text.length
-            ginc=(hexToG(input_color2)-g)/input_text.length
-            binc=(hexToB(input_color2)-b)/input_text.length
+            rinc=(hexToR(input_color2)-r)/((input_text.length)-1)
+            ginc=(hexToG(input_color2)-g)/((input_text.length)-1)
+            binc=(hexToB(input_color2)-b)/((input_text.length)-1)
             for (a=0; a<input_text.length; a++) {
                 ccol=rgbToHex(r,g,b);
                 if (input_text.charAt(a)==" ") {
@@ -170,7 +170,7 @@ function textcolorizer_handle() {
             }
         } else if (input_effect=="4") {
             str_html+="<span style='color:"+input_color8+";'>"+input_text+"</span>"
-            str_ansicode+='[ansi('+input_color8+','+input_text+")]";
+            str_ansicode+='[ansi(#'+input_color8+','+input_text+")]";
         } else if (input_effect=="5") {
             var i=0;
             for (a=0; a<input_text.length; a++) {
