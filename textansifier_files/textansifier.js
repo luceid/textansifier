@@ -170,7 +170,7 @@ function textcolorizer_handle() {
             }
         } else if (input_effect=="4") {
             str_html+="<span style='color:"+input_color8+";'>"+input_text+"</span>"
-            str_ansicode+='[ansi(#'+input_color8+','+input_text+")]";
+            str_ansicode+='[ansi('+input_color8+','+input_text+")]";
         } else if (input_effect=="5") {
             var i=0;
             for (a=0; a<input_text.length; a++) {
