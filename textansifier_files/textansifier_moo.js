@@ -103,7 +103,7 @@ function textcolorizer_handle() {
                     str_ansicode+=" ";
                 } else {
                     str_html+="<span style='color:#"+ccol+";'>"+input_text.charAt(a)+"</span>";
-                    str_ansicode+='['+Math.floor(Math.min(Math.max(r,0),255))+':'+Math.floor(Math.min(Math.max(g,0),255))+':'+Math.floor(Math.min(Math.max(b,0),255))+']'+input_text.charAt(a).replace(/,/g, '%,');
+                    str_ansicode+='['+Math.floor(Math.min(Math.max(r,0),255))+':'+Math.floor(Math.min(Math.max(g,0),255))+':'+Math.floor(Math.min(Math.max(b,0),255))+']'+input_text.charAt(a).replace(/,/g, ',');
                 }
                 r+=rinc;
                 g+=ginc;
@@ -123,7 +123,7 @@ function textcolorizer_handle() {
                     str_ansicode+=" ";
                 } else {
                     str_html+="<span style='color:#"+ccol+";'>"+input_text.charAt(a)+"</span>";
-                    str_ansicode+='['+Math.floor(Math.min(Math.max(r,0),255))+':'+Math.floor(Math.min(Math.max(g,0),255))+':'+Math.floor(Math.min(Math.max(b,0),255))+']'+input_text.charAt(a).replace(/,/g, '%,');
+                    str_ansicode+='['+Math.floor(Math.min(Math.max(r,0),255))+':'+Math.floor(Math.min(Math.max(g,0),255))+':'+Math.floor(Math.min(Math.max(b,0),255))+']'+input_text.charAt(a).replace(/,/g, ',');
                 }
                 if (a<Math.floor(input_text.length/2)) {
                     r+=rinc;
@@ -156,7 +156,7 @@ function textcolorizer_handle() {
                     str_ansicode+=" ";
                 } else {
                     str_html+="<span style='color:#"+ccol+";'>"+input_text.charAt(a)+"</span>";
-                    str_ansicode+='['+Math.round(r)+':'+Math.round(g)+':'+Math.round(b)+']'+input_text.charAt(a).replace(/,/g, '%,');
+                    str_ansicode+='['+Math.round(r)+':'+Math.round(g)+':'+Math.round(b)+']'+input_text.charAt(a).replace(/,/g, ',');
                 }
                 if (a<Math.floor(input_text.length/2)) {
                     r+=rinc;
@@ -190,15 +190,15 @@ function textcolorizer_handle() {
                             str_ansicode+=" ";
                         } else {
                             str_html+="<span style='color:#"+ccol+";'>"+input_text.charAt(a)+"</span>";
-                            str_ansicode+='['+Math.floor(r)+':'+Math.floor(g)+':'+Math.floor(b)+']'+input_text.charAt(a).replace(/,/g, '%,');
+                            str_ansicode+='['+Math.floor(r)+':'+Math.floor(g)+':'+Math.floor(b)+']'+input_text.charAt(a).replace(/,/g, ',');
                         }
                     } else {
                         if (a==0 || input_text.charAt(a-1)==" ") {
                             str_html+="<span style='color:#"+ccol+";'>"+input_text.charAt(a);
-                            str_ansicode+='['+Math.floor(r)+':'+Math.floor(g)+':'+Math.floor(b)+']'+input_text.charAt(a).replace(/,/g, '%,');
+                            str_ansicode+='['+Math.floor(r)+':'+Math.floor(g)+':'+Math.floor(b)+']'+input_text.charAt(a).replace(/,/g, ',');
                         } else if (a==input_text.length-1 || input_text.charAt(a)==" ") {
                             str_html+=input_text.charAt(a)+"</span>";
-                            str_ansicode+='['+Math.floor(r)+':'+Math.floor(g)+':'+Math.floor(b)+']'+input_text.charAt(a).replace(/,/g, '%,');
+                            str_ansicode+='['+Math.floor(r)+':'+Math.floor(g)+':'+Math.floor(b)+']'+input_text.charAt(a).replace(/,/g, ',');
                         } else {
                             str_html+=input_text.charAt(a);
                             str_ansicode+=input_text.charAt(a);
@@ -223,7 +223,7 @@ function textcolorizer_handle() {
                     str_ansicode+=" ";
                 } else {
                     str_html+="<span style='color:#"+ccol+";'>"+input_text.charAt(a)+"</span>";
-                    str_ansicode+='[ansi(#'+ccol+','+input_text.charAt(a).replace(/,/g, '%,')+")]";
+                    str_ansicode+='[ansi(#'+ccol+','+input_text.charAt(a).replace(/,/g, ',')+")]";
                 }
             }
         }
