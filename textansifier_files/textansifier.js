@@ -304,8 +304,12 @@ var hex2xterm = function(color) {
 };
 
 var rgb2xterm = function(r, g, b) {
-  var incs = [0x00, 0x5f, 0x87, 0xaf, 0xd7, 0xff];
-  var res = [];
+    console.log('Starting rgb2xterm: ' + r + ', ' + g + ', ' + b);
+    r = Math.max(0,Math.min(r,255));
+    g = Math.max(0,Math.min(g,255));
+    b = Math.max(0,Math.min(b,255));
+    var incs = [0x00, 0x5f, 0x87, 0xaf, 0xd7, 0xff];
+    var res = [];
 
   [r, g, b].forEach(function(part){
     var i = 0;
@@ -327,14 +331,18 @@ var rgb2xterm = function(r, g, b) {
       i++;
     }
   });
-
-  return CLUT[res.map(function(el){
+  var returnValue = CLUT[res.map(function(el){
     var newNumber = el.toString(16);
     if (newNumber.length < 2) {
       newNumber = 0 + newNumber;
     }
+    console.log('New Number: ' + newNumber); 
     return newNumber;
   }).join('')];
+
+  console.log('Return Value: ' + returnValue);
+  console.log('End rgb2xterm');
+  return returnValue;
 };
 
 var xterm2hex = function(xterm) {
